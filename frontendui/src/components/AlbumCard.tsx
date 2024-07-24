@@ -47,7 +47,7 @@ const Button = styled.button`
 
 const AlbumCard: React.FC<AlbumCardProps> = ({ album, artist, numOfSongs }) => (
   <Card>
-    <AlbumImage src="./image.png" alt="coverImage" />
+    <AlbumImage src="/image.png" alt="coverImage" />
     <AlbumDetails>
       <p style={{fontWeight:"bolder"}}>NoOfAlbum:{album}</p>
       <p style={{fontWeight:"bolder"}}>Artist: {artist}</p>

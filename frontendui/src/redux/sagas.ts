@@ -38,10 +38,11 @@ interface FetchSongsByGenreAction {
   type: string;
   payload: string;
 }
+const API = "https://music-library-mern-production-a9fe.up.railway.app/";
 
 function* fetchSongs(): Generator<StrictEffect, void, any> {
   try {
-    const response = yield call(axios.get, "http://localhost:8080/songs");
+    const response = yield call(axios.get, API + "songs");
     yield put(fetchSongsSuccess(response.data));
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -56,7 +57,7 @@ function* fetchSongs(): Generator<StrictEffect, void, any> {
 
 function* fetchTotals(): Generator<StrictEffect, void, any> {
   try {
-    const response = yield call(axios.get, "http://localhost:8080/totals");
+    const response = yield call(axios.get, API + "totals");
     yield put(fetchTotalsSuccess(response.data));
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -71,10 +72,7 @@ function* fetchTotals(): Generator<StrictEffect, void, any> {
 
 function* fetchArtists(): Generator<StrictEffect, void, any> {
   try {
-    const response = yield call(
-      axios.get,
-      "http://localhost:8080/noofSongnAlbum"
-    );
+    const response = yield call(axios.get, API + "noofSongnAlbum");
     yield put(fetchArtistsSuccess(response.data));
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -89,10 +87,7 @@ function* fetchArtists(): Generator<StrictEffect, void, any> {
 
 function* fetchAlbums(): Generator<StrictEffect, void, any> {
   try {
-    const response = yield call(
-      axios.get,
-      "http://localhost:8080/noofsonginalbum"
-    );
+    const response = yield call(axios.get, API + "noofsonginalbum");
     yield put(fetchAlbumsSuccess(response.data));
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -111,7 +106,7 @@ function* fetchGenres(
     const genre = action.payload;
     const response = yield call(
       axios.get,
-      `http://localhost:8080/filterbygener?genre=${genre}`
+      API + `filterbygener?genre=${genre}`
     );
     yield put(fetchGenresSuccess(response.data));
   } catch (error) {
@@ -126,7 +121,7 @@ function* fetchGenres(
 }
 function* fetchSongInGenres(): Generator<StrictEffect, void, any> {
   try {
-    const response = yield call(axios.get, `http://localhost:8080/noofsongs`);
+    const response = yield call(axios.get, API + `noofsongs`);
     yield put(fetchSongInGenresSuccess(response.data));
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -142,11 +137,7 @@ function* addSong(
   action: ReturnType<typeof addSongStart>
 ): Generator<StrictEffect, void, any> {
   try {
-    const response = yield call(
-      axios.post,
-      "http://localhost:8080/postsong",
-      action.payload
-    );
+    const response = yield call(axios.post, API + "postsong", action.payload);
     yield put(addSongSuccess(response.data));
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -161,10 +152,7 @@ function* fetchSongsByArtist(
 ): Generator<StrictEffect, void, any> {
   try {
     const artist = action.payload;
-    const response = yield call(
-      axios.get,
-      `http://localhost:8080/artist/?artist=${artist}`
-    );
+    const response = yield call(axios.get, API + `artist/?artist=${artist}`);
     yield put(fetchSongsByArtistSuccess(response.data));
   } catch (error) {
     if (axios.isAxiosError(error)) {
@@ -180,10 +168,7 @@ function* fetchSongById(
   action: ReturnType<typeof fetchSongByIdStart>
 ): Generator<StrictEffect, void, any> {
   try {
-    const response = yield call(
-      axios.get,
-      `http://localhost:8080/song/${action.payload}`
-    );
+    const response = yield call(axios.get, API + `song/${action.payload}`);
     yield put(fetchSongByIdSuccess(response.data));
   } catch (error) {
     yield put(
@@ -202,7 +187,7 @@ function* editSong(
   try {
     const response = yield call(
       axios.put,
-      `http://localhost:8080/updatesong/${action.payload.id}`,
+      API + `updatesong/${action.payload.id}`,
       action.payload
     );
     yield put(editSongSuccess(response.data));
@@ -221,10 +206,7 @@ function* deleteSong(
   action: PayloadAction<number>
 ): Generator<StrictEffect, void, any> {
   try {
-    yield call(
-      axios.delete,
-      `http://localhost:8080/deletesong/${action.payload}`
-    );
+    yield call(axios.delete, API + `deletesong/${action.payload}`);
     yield put(deleteSongSuccess(action.payload));
   } catch (error) {
     yield put(
