@@ -132,10 +132,10 @@ const AddSongForm = () => {
           value={songDetails.genre}
           onChange={handleChange}
         />
-        <UploadLabel>
+        {/* <UploadLabel>
           Upload Image
           <UploadInput type="file" name="coverImage" />
-        </UploadLabel>
+        </UploadLabel> */}
         <Button type="submit">Add Song</Button>
       </Form>
     </Container>

@@ -153,10 +153,10 @@ const EditSong: React.FC = () => {
           value={songDetails.genre}
           onChange={handleChange}
         />
-        <UploadLabel>
+        {/* <UploadLabel>
           Upload Image
           <UploadInput type="file" name="coverImage" />
-        </UploadLabel>
+        </UploadLabel> */}
         <Button type="submit">Update Song</Button>
       </Form>
     </Container>
