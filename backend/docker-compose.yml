@@ -1,0 +1,31 @@
+# version: '3.8'
+
+# services:
+#   web:
+#     image: node:14
+#     working_dir: /app
+#     volumes:
+#       - .:/app
+#     ports:
+#       - "3000:3000"
+#     command: npm start
+#     depends_on:
+#       - mongo
+
+#   mongo:
+#     image: mongo:latest
+#     ports:
+#       - "27017:27017"
+#     volumes:
+#       - mongo-data:/data/db
+
+# volumes:
+#   mongo-data:
+version: "3.8"
+services:
+  musicapp_backend:
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    restart: unless-stopped
